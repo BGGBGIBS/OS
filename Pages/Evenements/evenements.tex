@@ -1,1 +1,27 @@
 \section{Evénements}\label{sec:evenements}
+
+Un programme est composé de trois parties principales :
+\begin{itemize}
+    \item \textbf{Code machine} : Instructions représentant la logique des traitements.
+    \item \textbf{Espace de données} : Contient les données manipulées par le programme (variables globales, tableaux, variables dynamiques obtenues via \texttt{malloc}).
+    \item \textbf{Stack} : Héberge les données de travail courantes (variables locales) et les informations d'appels de fonctions imbriquées.
+\end{itemize}
+
+Ces composantes sont liées par des adresses, utilisées pour les branchements, appels et retours de fonction, accès aux cases d'un tableau, et manipulations de la stack. Pour s'exécuter, elles doivent être placées en mémoire principale.
+
+Le processeur suit un cycle \textit{fetch-decode-execute} :
+\begin{itemize}
+    \item \textbf{Fetch} : Récupération de l'instruction courante depuis la mémoire.
+    \item \textbf{Decode} : Décodage de l'instruction pour déterminer le traitement.
+    \item \textbf{Execute} : Exécution de l'instruction, mise à jour des registres et/ou de la mémoire.
+\end{itemize}
+
+L'\textit{instruction pointer} (ou \textit{program counter}) contient l'adresse de l'instruction courante et est mis à jour après chaque instruction (soit par incrémentation, soit par branchement). L'état du programme à un moment donné est déterminé par :
+\begin{itemize}
+    \item Les valeurs des registres
+    \item Le contenu de la stack
+    \item Le contenu de l'espace de données
+    \item L'\textit{instruction pointer}
+\end{itemize}
+
+Une sauvegarde de ces éléments représente un instantané de l'état du programme, permettant de reprendre l'exécution là où elle s'est arrêtée.
