@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}    
+\usepackage[francais]{babel} 
+\usepackage{booktabs}
+\usepackage{array} 
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{geometry}
+\usepackage{caption}
+
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\captionsetup[table]{labelsep=space, justification=centering}
+
+
+\title{Titre du document}
+\author{Nom de l'auteur}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Abstract}
+
+Tor :
+\begin{itemize}
+    \item Serice de communication anonyme
+    \item À faible latence
+    \item Basé sur un circuit
+\end{itemize}
+
+\begin{itemize}
+    \item protocole pour des routeurs en oignon asynchrones
+    \item vaguement fédéré
+\end{itemize}
+
+Plus par rapport à la première version :
+\begin{itemize}
+    \item secret de forward parfait
+    \item contrôle de congestion
+    \item serveur d'annuaire
+    \item contrôle d'intégrité
+    \item politiques de sortie confugurables
+    \item points de rendez-vous : conception pratique pour les services cachés
+\end{itemize}
+
+\begin{itemize}
+    \item fonctionne sur l'internet reel 
+    \item pas de privilèges spéciaux
+    \item pas de modifications du noyau
+    \item peu de synchro ou de coordination entre les noeuds
+    \item compromis entre anonymat, facilité d'utilisation et efficacité 
+\end{itemize}
+
+
+ici => réseau de + de 30 noeuds
+
+
+\section{Overview}
+
+Routage onion : réseau distribué superposé conçu pour rendre anonymes les applications basées sur le protocole \acrshort{tcp} telles que :
+\begin{itemize}
+    \item Navigation sur le web : \acrshort{tor} browser
+    \item Secure shell : ssh
+    \item Messagerie instantannée
+\end{itemize}
+
+Comment ? 
+Les clients choisissent un chemin à travers le réseau et construisent un circuit dans lequel chaque noeud ("routeur onion" ou "OR") du chemin ne connaît que son prédécesseur ainsi que son successeur.
+
+Le traffic (paquets de données) étant propagé en cellules de tailles fixes (pour conserver l'anonymat : aucune infos sur l'expéditeur).
+Chaque cellule est cryptée en couches (une couche par noeud où transitent les données), chaque routeur déchiffre une couche via clé symétrique avant de transférer les données au routeur suivant.
+
+\subsection{OR 1 vs \acrshort{or} 2}
+\subsubsection{Secret parfait}
+Avant : structure de données unique à chiffrement multiple
+Maintenant : Conception de construction de chemin téléscopique 
+
+Avant: un noeud hostile pouvant capturer le traffic et ainsi rompre l'anonymat
+Maintennt: impossible de connaître l'historique du traffic
+
+Avant :
+Maintenant : Diffie-Hellman pour la connexion avec le premier noeud, celle entre le premiere et le deuxième,..
+
+
+\subsubsection{Séparation du nettoyage du protocole de l'anonymisation}
+
+Usage de privoxy plutot de que services spécifiques à Tor
+avant : proxy d'application
+Maintenant: SOCKS et privoxy
+
+\subsubsection{Partage d'un circuit par plusieurs flux TCP}
+Avant : un circuit par request d'application TCP
+Maintenant : un circuit multiplexant toutes les requetes d'application TCP
+
+\subsubsection{Topologie de circuit à fuite}
+Possibilité de rediriger le trafic vers d'autres noeuds pour contrer des attaques
+
+\subsubsection{Contrôle de la congestion}
+contrôle de congestion décentralisée par les noeuds périphériques
+\subsubsection{Serveur d'annuaire}
+Avant : inoder le réseau d'informations
+Maintenant : serveurs d'annuaire sur les noeuds les plus sûrs (routeurs + états)
+
+\subsubsection{Politiques de sortie variables}
+1 noeud = 1 politique d'hôtes et d'inferfaces auxquelles se connecter
+
+\subsubsection{Contrôle d'intégrité de bout en bout}
+Maintenant : \acrshort{tor} vérifie l'intégrité des données avant qu'elles ne quittent le réseau pour empêcher leur altération par un noeud.
+
+\subsubsection{Points de rendez-vous et services cachés}
+Avant : onions de réponses à longue durée de vies
+Maintenant : points de rendez-vous pour se connecter à des serveurs cachés 
+
+\section{}
+\section{Desing}
+
+Connexions \acrshort{tls} maintenue entre chaque \acrshort{or} et chaque autre OR
+
+Chaque \acrshort{or} execute un \acrshort{op} pour récupérer les annuaires/ répertoires, et établir des circuits de réseaux
+
+Chaque \acrshort{or} a une clé d'identité long terme et une clé onion court terme:
+\begin{itemize}
+    \item La clé identité est utile pour :
+    \begin{itemize}
+        \item Signer les certificats TLS
+        \item Signer la description du \acrshort{or} : its keys, address, bandwidth, exit policy, and so on
+        \item Signer les annuaires (via serveurs d'annuaires)
+    \end{itemize}
+    
+    \item La clé onion est utilisée pour décrypter les requêtes d'utilisateurs poue mettre en place un circuit et négacier les clés éphémères
+    Le protocole \acrshort{tls} établit aussi un lien de clé court terme lors des communications entre OR
+    Les clés court terme sont rotatées périodiquement et indépendamment pour limiter l'impact sur la compromission des clés
+\end{itemize}
+
+\begin{quote}
+    TLS, abréviation de Transport Layer Security, est un protocole de sécurité conçu pour fournir des communications sécurisées sur un réseau informatique. Il est largement utilisé sur Internet pour sécuriser les échanges de données entre un site web et un navigateur, garantissant ainsi que les données transmises, telles que les détails de carte de crédit et les informations personnelles, restent confidentielles et à l'abri des interceptions malveillantes.
+    
+    \acrshort{tor} offre un anonymat en faisant transiter les communications à travers un réseau de serveurs, appelés nœuds ou routeurs oignon, empêchant ainsi quiconque d'observer qui communique avec qui ou de surveiller les sites que les utilisateurs visitent. \acrshort{tor} utilise le chiffrement dans sa structure en couches (d'où l'analogie de l'oignon) pour assurer la confidentialité et l'intégrité des données à chaque étape de leur transit à travers le réseau.
+    
+    En revanche, \acrshort{tls} fonctionne en établissant un canal sécurisé entre deux parties (par exemple, un site web et un navigateur) pour la communication sécurisée, en utilisant des certificats numériques pour authentifier l'identité du serveur. Une fois la connexion sécurisée établie, toutes les données transmises sont cryptées, ce qui rend difficile pour les tiers d'intercepter ou de modifier les informations.
+    
+    Bien que \acrshort{tor} et \acrshort{tls} servent tous deux à améliorer la sécurité et la confidentialité des communications sur Internet, ils opèrent à différents niveaux et pour des objectifs légèrement différents. \acrshort{tor} se concentre sur l'anonymat et la protection contre la surveillance réseau, tandis que \acrshort{tls} se concentre sur la sécurisation des communications point à point entre le client et le serveur.
+\end{quote}
+\textit{— Citation fournie par ChatGPT}
+
+\subsection{cellules}
+
+\section{Clés}
+
+
+
+\section{Conclusion}
+
+\end{document}

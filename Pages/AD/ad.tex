@@ -1,0 +1,35 @@
+\section{Menaces}\label{sec:ad}
+
+Comme décrit tout au long de ce rapport, \acrshort{tor} assure l'anonymat de ses client, la non-vulnérabilité des données qu'ils transmettent ainsi que l'intraçabilité de leurs communications de bout en bout. 
+La présente section s'attardera sur les différents types d'attaques recensées dans l'article ainsi que les axes de défenses mis en place dans \acrshort{tor}.
+L'anonymat sera abordé au point \ref{subsubsec:passive} "\nameref{subsubsec:passive}", les aspects cryptographiques au point \ref{subsubsec:active} "\nameref{subsubsec:active}".
+Les servrus de répertoires au point \ref{subsubsec:annuaire} "\nameref{subsubsec:annuaire}" et les point de rendez-vous au \ref{subsubsec:rdv} "\nameref{subsubsec:rdv}".
+
+\subsection{Passive}\label{subsubsec:passive}
+
+Les attaques passives concernent uniquement l'établissement de profils sur base d'analyses permettant ainsi de compromettre l'anonymat. 
+Le tableau \ref{tab:ad-passive} "\nameref{tab:ad-passive}" ci-dessous présente les différents types d'attaques passives recensées dans l'article et y associe un axe de défense.
+\input{Tables/AD/ad-passive.tex}
+
+\newpage
+\subsection{Active}\label{subsubsec:active}
+
+Les attaqques actives concernent uniquement la compromission des techniques de chiffrement via divers procédés. 
+Le tableau \ref{tab:ad-active} "\nameref{tab:ad-active}" ci-dessous présente les différents types d'attaques actives recencées dans l'article et y associe un axe de défense.
+\input{Tables/AD/ad-active.tex}
+
+\newpage
+\subsection{Annuaire}\label{subsubsec:annuaire}
+Les serveurs d'annuaires sont un coposante essentielle de tout réseau \acrshort{tor}.
+% Le Tableau \ref{tab:structure-annuaire} "\nameref{tab:structure-annuaire}" ci-dessous reprend la structure ainsi que le contenu typique d'un annuaire.
+% \input{Tables/AD/structure-annuaire.tex}
+
+Les attaques contre les serveurs d'annuaires ciblent celles dont l'objectif est la compromission d'une partie des circuits créés.
+Le tableau \ref{tab:ad-ds} "\nameref{tab:ad-rdvp}" ci-dessous présente les différents types d'attaques contre les serveurs d'annuaires et y associe un axe de défense.
+\input{Tables/AD/ad-annuaire.tex}
+
+\subsection{Points de rendez-vous}\label{subsubsec:rdv}
+
+Les attaques contre les points de rendez-vous.
+Le tableau \ref{tab:ad-rdvp} "\nameref{tab:ad-rdvp}" ci-dessous recence les différent types d'attaques contre les points de rendez-vous et y associe un axe de défense.
+\input{Tables/AD/ad-rdvp.tex}

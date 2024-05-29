@@ -1,0 +1,33 @@
+\begin{longtable}{p{0.25\linewidth} p{0.7\linewidth}}
+    \toprule
+    \textbf{Attaque} & \textbf{Défense} \\
+    \midrule
+    Observation du trafic utilisateur & Le contenu à l'extrémité de l'utilisateur est crypté, bien que les connexions aux répondants puissent ne pas l'être. \\
+    \addlinespace
+    Corrélation de timing de bout en bout & \acrshort{tor} minimise mais ne cache pas complètement ces corrélations. \\
+    \addlinespace
+    Corrélation de la taille de bout en bout & La multiplexation des flux dans le même circuit limite cette corrélation à la granularité des cellules. \\
+    \addlinespace
+    Empreinte digitale de site web & Potentiellement effective contre Tor; des défenses supplémentaires pourraient inclure des stratégies de padding. \\
+    \addlinespace
+    Compromission de clés & La rotation périodique des clés limite la fenêtre d'opportunité pour ces attaques. \\
+    \addlinespace
+    Compromission d'un \acrshort{or} par itération & \acrshort{tor} protège contre ce scénario en éliminant rapidement les informations nécessaires pour compléter une telle attaque. \\
+    \addlinespace
+    Exécution d'un serveur de destination hostile & Les attaques de fin à fin deviennent plus faciles si l'adversaire peut induire les utilisateurs à se connecter à son serveur web. \\
+    \addlinespace
+    Exécution d'un \acrshort{or} hostile & Un \acrshort{or} isolé hostile peut créer des circuits à travers lui-même ou altérer des modèles de trafic. \\
+    \addlinespace
+    Introduire un timing dans les messages & \acrshort{tor} n'adresse pas directement ces attaques, mais elles ne sont qu'une version plus forte des attaques passives de timing. \\
+    \addlinespace
+    Attaques de tag & Les vérifications d'intégrité sur les cellules empêchent cette attaque. \\
+    \addlinespace
+    Remplacement de contenus de protocoles non authentifiés & Un nœud de sortie hostile peut usurper le serveur cible pour des protocoles non authentifiés. \\
+    \addlinespace
+    Attaques de replay & Non pertinentes pour Tor; la rediffusion d'un côté de la poignée de main entraîne une clé de session différente. \\
+    \addlinespace
+    Attaques contre les points de rendez-vous & Bob peut limiter la réception de requêtes via des tokens d'autorisation, et les points d'introduction peuvent être secrètement annoncés. \\
+    \addlinespace
+    Attaques contre les serveurs de répertoire & Si un serveur de répertoire est compromis, il peut partiellement influencer le répertoire final, mais une majorité est nécessaire pour inclure des \acrshort{or} compromis. \\
+    \bottomrule
+    \end{longtable}

@@ -1,0 +1,41 @@
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{
+        >{\raggedright\arraybackslash}X
+        >{\raggedright\arraybackslash}X
+        >{\raggedright\arraybackslash}X
+        >{\raggedright\arraybackslash}X
+        >{\raggedright\arraybackslash}X}
+        \toprule
+    \rowcolor[HTML]{EFEFEF}    
+    \textbf{Système} & \textbf{Latence} & \textbf{Anonymat} & \textbf{Utilisation principale} & \textbf{Vulnérabilités} \\
+    \midrule
+    Chaum's Mix-Net & Haute & Très élevé & Messages asynchrones & Délais et réordonnancement \\
+    \midrule
+    Mixmaster & Haute & Très élevé & Email anonyme & Latence élevée, peu interactif \\
+    \midrule
+    Mixminion & Haute & Très élevé & Email anonyme & Latence élevée, peu interactif \\
+    \midrule
+    \acrshort{tor} & Faible & Élevé & Trafic interactif (Web, SSH) & Corrélation de timing et de volume \\
+    \midrule
+    Anonymizer & Très faible & Faible & Proxy unique, navigation Web & Confiance en un seul point, vulnérable à l'observation globale \\
+    \midrule
+    Java Anon Proxy (JAP) & Faible & Élevé & Web MIXes, routes fixes & Observation des extrémités de cascade \\
+    \midrule
+    PipeNet & Faible & Très élevé & Réseau à faible latence & Réseau arrêté par utilisateur unique \\
+    \midrule
+    Tarzan & Faible & Élevé & Réseau P2P & Complexité, difficulté de déploiement \\
+    \midrule
+    MorphMix & Faible & Élevé & Réseau P2P & Complexité, difficulté de déploiement \\
+    \midrule
+    Crowds & Faible & Moyen & Anonymat pour requêtes HTTP & Pas de chiffrement à clé publique \\
+    \midrule
+    Hordes & Faible & Moyen & Basé sur Crowds, réponses multicast & Latence, complexité accrue \\
+    \midrule
+    Freedom & Faible & Élevé & Réseau d'oignons original & Complexité, nécessités de patchs kernel \\
+    \bottomrule
+    \end{tabularx}
+    \caption{Comparaison des systèmes d'anonymat}
+    \label{tab:systems-vs}
+    \end{table}
+    

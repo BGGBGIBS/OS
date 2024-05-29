@@ -1,0 +1,25 @@
+\begin{table}[htpb]
+    \centering
+    \begin{tabularx}{\textwidth}{
+        >{\raggedright\arraybackslash}p{4.5cm}
+        >{\raggedright\arraybackslash}X}
+    \toprule
+    \rowcolor[HTML]{EFEFEF}
+    \textbf{Menace}                                                         & \textbf{Solution} \\ 
+    \midrule
+    Destruction des serveurs d'annuaires                                    & Tant que la moitié des serveurs d'annuaires sont en activité, ils continuent de fournir un annuaire valide. \\
+    \midrule
+    Subversion d'un serveur d'annuaire                                      & N'a qu'une influence partielle et minime sur la composition de l'annuaire final. \\
+    \midrule
+    Subversion de la majorité des serveurs d'annuaire                       & Les opérateurs de serveurs d'annuaires doivent être indépendants et résistants. \\
+    \midrule
+    Encouragement à la dissension entre serveurs d'annuaire                 & Aucune solution n'est proposée pour empecher de diviser les opérateurs et ainsi leurs utilisateurs. \\
+    \midrule
+    Tromper les serveurs d'annuaire pour lister un \acrshort{or} hostile    & Les opérateurs de serveurs de annuaire sont capables de filtrer la plupart des \acrshort{or}s hostiles. \\
+    \midrule
+    Convaincre les annuaires qu'un \acrshort{or} défaillant fonctionne      & Les serveurs d'annuaires doivent impérativement tester les \acrshort{or} de manière appropriée pour empêcher qu'un \acrshort{or} ne puisse accepter une connexion \acrshort{tls} en ignorant les cellules et ainsi passer les barrières de sécurité de \acrshort{tor}. \\
+    \bottomrule
+    \end{tabularx}
+    \caption{Menaces et défenses dans \acrshort{tor} : serveurs d'annuaires}
+    \label{tab:ad-ds}
+\end{table}

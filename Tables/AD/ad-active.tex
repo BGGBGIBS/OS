@@ -1,0 +1,37 @@
+\begin{table}[htpb]
+    \centering
+    \begin{tabularx}{\textwidth}{
+        >{\raggedright\arraybackslash}p{4.5cm}
+        >{\raggedright\arraybackslash}X}
+    \toprule
+    \rowcolor[HTML]{EFEFEF}
+    \textbf{Menace}                                         & \textbf{Solution} \\
+    \midrule
+    Compromission des clés                                  & La rotation periodique permet de contrer la compromission des clés de sessions \acrshort{tls} car même si l'attaquant peut observer les cellules relayées sur chacun des circuits de cette connexion, sans la clé oignon, il ne peut déchiffrer le contenu. \\ 
+    \midrule
+    Compromission itérative                                 & Le secret parfait vers l'avant (\textit{i.e.} Perfect Forward Secrecy) empêche de remonter un circuit même si un attaque a lieu d'un \acrshort{or} intermédiaire jusqu'au dernier. \\ 
+    \midrule
+    Exploitation d'un serveur web                           & \acrshort{tor} dépend de \gls{privoxy} pour empêcher un serveur web d'identifier des profils temporels des utilisateurs qui s'y connectent d'adapter ses réponses. \\
+    \midrule
+    Exploitation d'un proxy onion                           & À un client ne peut correspondre qu'un \acrshort{op} local. Cependant, compromettre un proxy onion compromet toutes ses connexions. \\ 
+    \midrule
+    Attaque DoS sur des nœuds non observables               & La mise en place de stratégies permettant au réseau de garder le contrôle sur les ressources matérielles utilisables permet de contrer les attaques de type Déni de service (\textit{i.e.} \acrfull{dos}). \\
+    \midrule
+    Exploitation d'un \acrshort{or} hostile                 & Un nœud hostile doit etre immediatement adjacent aux deux extremites pour compromettre l'anonymat d'un circuit. Si un adversaire contrôle plus d'un \acrshort{or}, il ne peut compromettre plus qu'une partie du trafic. \\ 
+    \midrule
+    Introduction de timing dans les messages                & Cela représente une version plus forte des attaques de timing passives déjà discutées. \\ 
+    \midrule
+    Attaques par marquage                                   & Les contrôles d'intégrité\footnote{Initialisation d'un digest SHA-1} sur les cellules empêchent un n\oe ud hostile de marquer une cellule en la modifiant. \\ 
+    \midrule
+    Remplacement de contenus de protocoles non authentifiés & La préférence des clients pour des protocoles authentifiés de bout en bout permet d'empêcher un nœud de sortie hostile de se faire passer pour le serveur cible. \\
+    \midrule
+    Attaques par rejeu                                      & Le protocole d'échnage de clés \acrshort{dh} permet de renégocier de nouvelles clés de session et ainsi contrer les attaques par replay. \\ 
+    \midrule
+    Attaques de diffamation                                 & Les politiques de sorties réduisent l'impact des attaques par diffamation. \\ 
+    \midrule
+    Distribution de code hostile                            & Des clés publiques de version officielles du code de \acrshort{tor} permettent de vérifier son authenticité avant de l'exécuter. \\ 
+    \bottomrule
+    \end{tabularx}
+    \caption{Menaces et défenses dans \acrshort{tor} : attaques actives}
+    \label{tab:ad-active}
+\end{table}

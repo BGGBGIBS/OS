@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{
+        >{\raggedright\arraybackslash}p{2cm} 
+        >{\raggedright\arraybackslash}X 
+        >{\raggedright\arraybackslash}X}
+            \toprule
+            \rowcolor[HTML]{EFEFEF}
+            \textbf{Type}           & \textbf{Commandes}        & \textbf{Fonctions} \\
+            \midrule
+            Contrôle & PADDING & Garder la connexion active \\
+            & CREATE & Établir un nouveau circuit \\
+            & CREATED & Confirmer la création du circuit \\
+            & DESTROY & Fermer un circuit \\
+            \addlinespace
+            Relais & RELAY\_BEGIN & démarrer une connexion \acrshort{tcp} \\
+            & RELAY\_DATA & transfert de données \\
+            & RELAY\_END & fermer une connexion \acrshort{tcp} \\
+            & RELAY\_CONNECTED & confirmer l'établissement de la connexion \acrshort{tcp} \\
+            & RELAY\_EXTEND & étendre un circuit à un autre nœud \\
+            & RELAY\_TRUNCATED & signaler une coupure de circuit partielle \\
+            & RELAY\_SENDME & contrôle de congestion (demande de données) \\
+            \bottomrule
+    \end{tabularx}
+    \caption{Comparaison des Types de Cellules et de leurs commandes dans le Réseau Tor}
+    \label{tab:cellules-tor}
+\end{table}

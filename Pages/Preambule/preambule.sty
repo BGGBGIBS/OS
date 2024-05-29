@@ -1,0 +1,75 @@
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{color}
+\usepackage[table,xcdraw]{xcolor}
+\definecolor{silver}{rgb}{0.75, 0.75, 0.75}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, fit, calc, shapes, patterns}
+% \usetikzlibrary{shapes.geometric}
+\usepackage{hyperref}
+%\usepackage[addtotoc]{abstract}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{url}
+\usepackage{varioref}
+\usepackage{cleveref}
+\usepackage{hyperref}
+\usepackage{nameref}
+\usepackage{titleref}
+\usepackage{lettrine}
+\usepackage{tabto}
+\usepackage{longtable}
+\usepackage{lipsum}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{caption}
+\captionsetup[table]{labelsep=space, justification=centering}
+\usepackage{diagbox}
+
+% GLOSSARY
+% \usepackage[acronym,toc]{glossaries}
+\usepackage[acronym,nomain,toc]{glossaries}
+\makeglossaries
+\loadglsentries{Pages/Glossary/glossary.tex}
+
+%\usepackage{pgfplots}
+\sisetup{
+	round-mode          = places, % Rounds numbers
+	round-precision     = 2, % to 2 places
+}
+\usepackage[
+type={CC},
+modifier={by-nc-sa},
+version={4.0},
+]{doclicense}
+%header
+\renewcommand{\headrulewidth}{1pt}
+\fancyhead[C]{} 
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\rightmark}
+%footer
+\renewcommand{\footrulewidth}{1pt}
+\fancyfoot[C]{\textbf{page \thepage}} 
+\fancyfoot[L]{\doclicenseNameRef
+	— \copyright Baptiste Grosjean}
+\fancyfoot[R]{Ann\'eee acad\'emique 2023-2024}
+%bibilography
+\usepackage[backend=biber,natbib=true,sortcites=true,style=numeric,sorting=none]{biblatex}
+\usepackage[babel=true,autostyle=true]{csquotes}
+%\renewcommand{\thesection}{\Roman{section}}
+\author{Baptiste Grosjean}
+\title{}
+\date{\today}

@@ -1,0 +1,21 @@
+\begin{table}[h!]
+    \centering
+    \begin{tabularx}{\textwidth}{
+        >{\raggedright\arraybackslash}p{4cm}
+        >{\raggedright\arraybackslash}X
+        >{\raggedright\arraybackslash}X}
+    \toprule
+    \rowcolor[HTML]{EFEFEF}
+    \textbf{Génération}             & \textbf{V2}                       & \textbf{V3} \\ 
+    \midrule
+    \textbf{Identification}         & Adresse .onion                    & Clé publique aveuglée (bpk) \\
+    \textbf{Fuites d'information}   & Descripteurs non chiffrés         & Descripteurs chiffrés \\
+    \textbf{Collecte d'adresses}    & Possible par les relais HSDir     & Prévention par dérivation de clé \\
+    \textbf{Influence sur HSDir}    & Choix d'empreinte manipulable     & Valeur aléatoire partagée réduit l'influence \\
+    \textbf{Prévisibilité}          & Position prédictible dans HSDir   & Positions imprévisibles grâce à la valeur aléatoire \\
+    \textbf{Attaque par ombrage}    & Réalisable par manipulation       & Mitigée par des changements de conception \\
+    \bottomrule
+    \end{tabularx}
+    \caption{Comparaison des services onion V2 et V3 et solutions V3 aux menaces V2}
+    \label{table:1}
+\end{table}
