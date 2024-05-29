@@ -1,6 +1,0 @@
-\babel@toc {english}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Structure de cellule vs structure d'une cellule de relais. \blx@tocontentsinit {0}\cite [Tor: The Second-Generation Onion Router]{dingledine_tor_2004}}}{6}{figure.caption.2}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Circuit à deux Routeurs Onions permettant à Alice de joindre un site web.\blx@tocontentsinit {0}\cite [Tor: The Second-Generation Onion Router]{dingledine_tor_2004}}}{7}{figure.caption.4}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Modélisation des différentes couches de sécurité dans TOR}}{8}{figure.caption.5}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Structure du chiffrement en couches. \blx@tocontentsinit {0}\cite [Layers-of-the-Onion-source]{noauthor_layers---onion-sourcepng_nodate}.}}{9}{figure.caption.6}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Illustration de l'algorithme Diffie-Hellman. \blx@tocontentsinit {0}\cite [Diffie-Hellman Algorithm.]{spider_diffie-hellman_2024}.}}{11}{figure.caption.8}%
