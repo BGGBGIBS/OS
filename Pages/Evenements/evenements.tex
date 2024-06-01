@@ -132,16 +132,95 @@ Pour permettre la continuation du programme, l’adresse de l’indicateur d’i
 
 \subsubsection{Vectorisation}
 
-Dans la vectorisation, chaque type d’évènement est associé à un numéro unique (e.g. interrupt vector), identifiant une entrée dans une table de descripteurs (e.g. interrupt descriptor table). Cette table référence la fonction de traitement spécifique (interrupt handler) à invoquer.
+Dans la vectorisation, chaque type d'évènement est associé à un numéro unique (e.g. interrupt vector). Ce numéro identifie une entrée dans une table de descripteurs (e.g. interrupt descriptor table, IDT) qui référence la fonction de traitement spécifique à invoquer (interrupt service routine, ISR). 
 
-Au terme d’un cycle d’exécution, le processeur :
+À la fin d’un cycle d’exécution, le processeur :
 \begin{itemize}
-    \item Consulte les numéros d’évènement survenus.
-    \item Invoque, dans un ordre déterminé, les fonctions de gestion correspondantes.
+    \item Consulte les numéros d’évènements survenus.
+    \item Invoque les fonctions de gestion des évènements correspondantes dans un ordre déterminé.
 \end{itemize}
 
-Le code de chaque fonction de gestion se concentre uniquement sur l’évènement correspondant, avec l’ordre d’invocation des exceptions géré par le processeur.
+Le code du gestionnaire d’évènements se concentre uniquement sur l’évènement correspondant. Au démarrage du système, l’OS initialise le contenu de la table des descripteurs et la référence au processeur via une instruction privilégiée (e.g. \texttt{lidt} en x86).
 
-Au démarrage, le système d’exploitation initialise la table des descripteurs et la référence au processeur via une instruction privilégiée (e.g. \texttt{lidt} en x86).
+Lorsqu’un évènement survient :
+\begin{itemize}
+    \item Le numéro d’évènement sert d’indice dans l’IDT.
+    \item Le descripteur correspondant (interrupt gate) contient l’adresse de la fonction de gestion vers laquelle brancher (offset).
+\end{itemize}
 
+
+\subsubsection{Niveaux de privilège}
+
+Le jeu d'instructions d'un processeur inclut toutes les instructions reconnaissables par son architecture, comprenant les instructions arithmétiques, logiques et systèmes. 
+Les instructions systèmes modifient la configuration du processeur et doivent être exécutées uniquement par le système d'exploitation.
+
+Un niveau de privilège contrôle quelles instructions peuvent être exécutées et quand. 
+La spécification du processeur décrit la dynamique de changement de ce niveau de privilège et son utilisation pour les vérifications. 
+
+\subsubsection{Basculement de stack}
+
+Lorsqu’un évènement survient, le processeur déroute vers une fonction du système d’exploitation, modifiant le contenu des registres et utilisant une stack pour stocker les valeurs temporaires. Il est crucial de décider si cette stack sera celle du programme suspendu ou une stack dédiée du système d’exploitation.
+
+Le processeur peut basculer vers une stack du système d’exploitation, en sauvegardant les informations nécessaires pour explorer la stack du programme suspendu (e.g. stack pointer). Par exemple, lors d'un appel système, les arguments peuvent être passés via la stack, et le système d’exploitation doit pouvoir les localiser.
+
+Après le traitement de l’évènement, la stack courante redevient celle du programme. La figure 1.11 illustre ce processus :
+\begin{itemize}
+    \item Avant le déroutement : \texttt{sp(pgm)}
+    \item Après le déroutement : \texttt{sp(os)}, contenant :
+    \begin{itemize}
+        \item Sauvegarde du pointeur de stack précédent \texttt{sp(pgm)}
+        \item Indicateur d’instruction courante \texttt{ip(pgm)}
+        \item Éventuel code d’erreur décrivant l’évènement
+    \end{itemize}
+\end{itemize}
+
+Ces informations permettent de revenir au programme pour une éventuelle continuation.
+
+
+
+\subsection{Multiplicité des occurences}
+
+Il est possible que plusieurs évènements se produisent pendant un même cycle d’exécution du processeur. 
+Les règles d'agrégatioons entre événements sont les suivantes :
+
+\begin{itemize}
+    \item \textbf{Reprise} l’emporte sur une \textbf{poursuite}.
+    \item \textbf{Abandon} l’emporte sur une \textbf{reprise}.
+\end{itemize}
+
+Lors de deux évènements similaires (deux poursuites, deux reprises, ou deux abandons), la conséquence est respectivement une poursuite, une reprise, ou un abandon.
+
+Pour des évènements de types différents :
+\begin{itemize}
+    \item \textbf{Reprise et poursuite} : La reprise l’emporte, les deux traitements doivent être réalisés. Si l'évènement avec poursuite est une interruption, il peut être traité en priorité.
+    \item \textbf{Poursuite et abandon} : L’abandon l’emporte. Si l'évènement avec poursuite est une exception, son traitement n'est pas nécessaire. Si c'est une interruption, il doit être traité.
+    \item \textbf{Reprise et abandon} : L’abandon l’emporte. Le traitement de l'évènement avec reprise n'est pas nécessaire car le programme ne continuera plus.
+\end{itemize}
+
+
+
+\subsection{Gestion ré-entrante des évènements}
+
+Un évènement peut survenir pendant n'importe quel cycle d'exécution, y compris pendant la gestion d'un autre évènement (exception ou interruption). Le gestionnaire d'évènements doit être adapté pour gérer cette imbrication correctement.
+
+Un gestionnaire ré-entrant permet de gérer de nouveaux évènements survenant pendant l'exécution du gestionnaire actuel. Les considérations sont similaires à la gestion des appels de fonctions récursives. 
+
+Pour garantir une sauvegarde cohérente des contextes imbriqués :
+\begin{itemize}
+    \item Utiliser la stack pour sauvegarder le contexte du gestionnaire d'évènements suspendu.
+    \item Désactiver les interruptions pendant les phases critiques (sauvegarde du contexte, restauration du contexte, continuation), mettant ainsi en attente les interruptions.
+    \item Préserver l'adresse de l'instruction corrélée à chaque niveau d'imbrication.
+\end{itemize}
+
+\subsection{Priorités et masques d'interruptions}
+
+Dans un système typique, il est crucial de respecter l'ordre de priorité des interruptions. Un gestionnaire ré-entrant seul ne suffit pas pour éviter l'inversion de priorité, où une interruption de basse priorité pourrait interrompre le traitement d'une interruption de haute priorité.
+
+La solution consiste à utiliser un masque d'interruptions, permettant une granularité dans l'activation et la désactivation des interruptions. Ce masque contrôle quelles interruptions sont actives (ou inactives) en utilisant un bit par type d'interruption. Le masque est combiné avec les bits des interruptions en attente à la fin de chaque cycle d'exécution.
+
+Lors du traitement d'une interruption, le gestionnaire :
+\begin{itemize}
+    \item Positionne les bits du masque pour autoriser uniquement les interruptions plus prioritaires.
+    \item Après traitement, restaure l'état du masque à son état précédent.
+\end{itemize}
 
