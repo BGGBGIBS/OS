@@ -15,8 +15,6 @@
 *.lof
 *.lot
 *.acn
-*.pdf
-
 # Ignore temporary files
 *~
 *.tmp
