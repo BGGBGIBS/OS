@@ -11,11 +11,11 @@ Un programme est composé de trois parties principales :
 Ces composantes sont liées par des adresses, utilisées pour les branchements, appels et retours de fonction, accès aux cases d'un tableau, et manipulations de la stack. Pour s'exécuter, elles doivent être placées en mémoire principale.
 
 Le processeur suit un cycle \textit{fetch-decode-execute} :
-\begin{itemize}
+\begin{enumerate}
     \item \textbf{Fetch} : Récupération de l'instruction courante depuis la mémoire.
     \item \textbf{Decode} : Décodage de l'instruction pour déterminer le traitement.
     \item \textbf{Execute} : Exécution de l'instruction, mise à jour des registres et/ou de la mémoire.
-\end{itemize}
+\end{enumerate}
 
 L'\textit{instruction pointer} (ou \textit{program counter}) contient l'adresse de l'instruction courante et est mis à jour après chaque instruction (soit par incrémentation, soit par branchement). L'état du programme à un moment donné est déterminé par :
 \begin{itemize}
