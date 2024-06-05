@@ -288,6 +288,30 @@ Le gestionnaire d'évènements doit être adapté pour gérer cette imbrication 
 Un gestionnaire ré-entrant permet de gérer de nouveaux évènements survenant pendant l'exécution du gestionnaire actuel. 
 Les considérations sont similaires à la gestion des appels de fonctions récursives. 
 
+Un gestionnaire d’ évènements réentrant permet aux  évènements survenant pendant certaines phases de son exécution de provoquer un déroutement.
+
+=> Focntion récursive
+\begin{enumerate}
+    \item Sauvegarde
+    \begin{enumerate}
+        \item Désactivation des interruptions
+        \item Empilement du contexte 
+        \item Empilement de l’adresse corrélée 
+        \item Réactivation des interruptions
+    \end{enumerate}
+    \item Restauration
+    \begin{enumerate}
+        \item Désactivation des interruptions
+        \item Dépilement de l’adresse corrélée 
+        \item Dépilement du contexte
+    \end{enumerate}
+    \item Continuation
+    \begin{enumerate}
+        \item Préparation de l’adresse de retour 
+        \item Retour \& réactivation des interruptions
+    \end{enumerate}
+\end{enumerate}
+
 Pour garantir une sauvegarde cohérente des contextes imbriqués :
 \begin{itemize}
     \item Utiliser la stack pour sauvegarder le contexte du gestionnaire d'évènements suspendu.
@@ -300,10 +324,13 @@ Pour garantir une sauvegarde cohérente des contextes imbriqués :
 Dans un système typique, il est crucial de respecter l'ordre de priorité des interruptions. 
 Un gestionnaire ré-entrant seul ne suffit pas pour éviter l'inversion de priorité, où une interruption de basse priorité pourrait interrompre le traitement d'une interruption de haute priorité.
 
+Un gestionnaire d’évènement préemptif garantit qu’une interruption de haute priorité est traitée avant toute interruption du plus basse priorité en cours ou en attente de traitement.
+
 La solution consiste à utiliser un masque d'interruptions, permettant une granularité dans l'activation et la désactivation des interruptions. 
 Ce masque contrôle quelles interruptions sont actives (ou inactives) en utilisant un bit par type d'interruption. 
 Le masque est combiné avec les bits des interruptions en attente à la fin de chaque cycle d'exécution.
 
+=> l'un à la suite de l'autre
 Lors du traitement d'une interruption, le gestionnaire :
 \begin{itemize}
     \item Positionne les bits du masque pour autoriser uniquement les interruptions plus prioritaires.

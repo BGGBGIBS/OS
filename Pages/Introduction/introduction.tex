@@ -20,7 +20,9 @@ Un système d’exploitation peut être perçu comme exposant une interface de p
 \subsection{Processeur}
 
 
-Le \textbf{processeur} exécute les instructions et réalise les traitements. Il est caractérisé par son jeu d'instructions (Instruction Set Architecture), qui définit les instructions exécutables et leur format d'encodage (opcode et opérandes). Les instructions sont classées en plusieurs types :
+Le \textbf{processeur} exécute les instructions et réalise les traitements. 
+Il est caractérisé par son jeu d'instructions (Instruction Set Architecture), qui définit les instructions exécutables et leur format d'encodage (opcode et opérandes). 
+Les instructions sont classées en plusieurs types :
 \begin{itemize}
     \item Arithmétique (e.g. \texttt{add}, \texttt{div})
     \item Logique (e.g. \texttt{and})
@@ -28,7 +30,8 @@ Le \textbf{processeur} exécute les instructions et réalise les traitements. Il
     \item Instructions système
 \end{itemize}
 
-Les processeurs modernes utilisent une structure de pipeline, permettant à différentes instructions d'occuper simultanément différentes parties du pipeline. Deux types principaux d'architecture de jeu d'instructions existent :
+Les processeurs modernes utilisent une structure de pipeline, permettant à différentes instructions d'occuper simultanément différentes parties du pipeline. 
+Deux types principaux d'architecture de jeu d'instructions existent :
 \begin{itemize}
     \item RISC (Reduced Instruction Set Computer)
     \item CISC (Complex Instruction Set Computer)
@@ -43,19 +46,25 @@ Les responsabilités de gestion du processeur en collaboration avec le système 
 
 \subsubsection{Exécution de programme}
 
-La première responsabilité de gestion consiste à surveiller l'exécution des instructions d'un programme utilisant le processeur. Le système d'exploitation et les programmes se partagent le processeur, nécessitant la suspension de l'exécution en cours lors d'un évènement particulier. Le processeur peut réagir de différentes manières :
+La première responsabilité de gestion consiste à surveiller l'exécution des instructions d'un programme utilisant le processeur. 
+Le système d'exploitation et les programmes se partagent le processeur, nécessitant la suspension de l'exécution en cours lors d'un évènement particulier. 
+Le processeur peut réagir de différentes manières :
 
 \begin{itemize}
     \item \textbf{Mauvais comportement} : déroutement vers une fonction du système d'exploitation pour traiter des erreurs telles qu'une division par zéro, un accès mémoire invalide ou une tentative d'exécuter une instruction privilégiée.
     \item \textbf{Anomalie non fatale} : correction des circonstances ayant provoqué l'anomalie et reprise de l'exécution.
     \item \textbf{Appel système} : branchement vers une fonction du système d'exploitation pour des demandes comme l'obtention de mémoire ou l'écriture dans un fichier.
-    \item \textbf{Interruption externe} : traitement d'une interruption provenant d'un périphérique externe. Par exemple, une interruption du clavier nécessite de communiquer avec le contrôleur du clavier pour identifier la touche concernée et le programme destinataire.
+    \item \textbf{Interruption externe} : traitement d'une interruption provenant d'un périphérique externe. 
+    Par exemple, une interruption du clavier nécessite de communiquer avec le contrôleur du clavier pour identifier la touche concernée et le programme destinataire.
 \end{itemize}
 
 
 \subsubsection{Ordonnancement de programmes}
 
-La seconde responsabilité du système d'exploitation est de répartir le temps processeur entre les programmes. L'ordonnancement sélectionne le prochain programme à exécuter lorsque le processeur est libre. Différentes stratégies sont utilisées selon le type de système et la charge de travail. Les métriques d'évaluation incluent la minimisation du temps d'exécution moyen et l'adéquation entre les besoins du programme et le temps processeur alloué.
+La seconde responsabilité du système d'exploitation est de répartir le temps processeur entre les programmes. 
+L'ordonnancement sélectionne le prochain programme à exécuter lorsque le processeur est libre. 
+Différentes stratégies sont utilisées selon le type de système et la charge de travail. 
+Les métriques d'évaluation incluent la minimisation du temps d'exécution moyen et l'adéquation entre les besoins du programme et le temps processeur alloué.
 
 
 \subsection{Mémoire}
@@ -72,7 +81,8 @@ L'allocation dynamique permet de gérer la mémoire de manière flexible. La mé
 
 \subsubsection{Protection de la mémoire}
 
-Le système d'exploitation contrôle les accès mémoire pour garantir qu'un programme n'accède qu'à sa propre mémoire, évitant ainsi la lecture ou la modification de données sensibles (e.g. clefs de chiffrement). Le processeur vérifie les accès mémoire selon les descriptions des espaces mémoire accessibles à chaque programme, mises à jour par le système d'exploitation.
+Le système d'exploitation contrôle les accès mémoire pour garantir qu'un programme n'accède qu'à sa propre mémoire, évitant ainsi la lecture ou la modification de données sensibles (e.g. clefs de chiffrement). 
+Le processeur vérifie les accès mémoire selon les descriptions des espaces mémoire accessibles à chaque programme, mises à jour par le système d'exploitation.
 
 \begin{itemize}
     \item \textbf{Adresse valide} : Accessible au programme, l'accès est accordé (e.g. \texttt{lw}, \texttt{sw}).
@@ -84,11 +94,13 @@ Le système d'exploitation contrôle les accès mémoire pour garantir qu'un pro
 
 \subsubsection{Répartition de la mémoire}
 
-La seconde responsabilité de gestion est la répartition de la mémoire principale entre les différents programmes. Cela inclut la représentation et le suivi des portions de mémoire (libres ou non) et l'identification d'une portion adéquate pour satisfaire une demande d'allocation dynamique.
+La seconde responsabilité de gestion est la répartition de la mémoire principale entre les différents programmes. 
+Cela inclut la représentation et le suivi des portions de mémoire (libres ou non) et l'identification d'une portion adéquate pour satisfaire une demande d'allocation dynamique.
 
 \subsection{Stockage}
 
-Le stockage préserve les données produites par un programme au-delà de son exécution. Une fois le programme terminé, sa mémoire est libérée et peut être allouée à un autre programme. La notion de fichier assure la pérennité des données, malgré la diversité des supports physiques adaptés à différents scénarios d’utilisation :
+Le stockage préserve les données produites par un programme au-delà de son exécution. Une fois le programme terminé, sa mémoire est libérée et peut être allouée à un autre programme. 
+La notion de fichier assure la pérennité des données, malgré la diversité des supports physiques adaptés à différents scénarios d’utilisation :
 
 \begin{itemize}
     \item \textbf{HDD} : Disque dur, bon marché, accès lent, organisé en plateaux, cylindres, têtes, et secteurs.
@@ -96,14 +108,16 @@ Le stockage préserve les données produites par un programme au-delà de son ex
     \item \textbf{Bande magnétique} : Grande capacité, fiable, utilisé pour les backups.
 \end{itemize}
 
-Un système de fichiers met en place une abstraction pour accéder au stockage, en représentant les fichiers et répertoires et leurs méta-données (e.g. taille, dates, permissions). Il garantit également la cohérence des écritures et réduit la possibilité de corruption des données.
+Un système de fichiers met en place une abstraction pour accéder au stockage, en représentant les fichiers et répertoires et leurs méta-données (e.g. taille, dates, permissions). 
+Il garantit également la cohérence des écritures et réduit la possibilité de corruption des données.
 
 \subsection{Typologie des systèmes}
 
 Les types de systèmes influencent la conception des systèmes d'exploitation :
 
 \begin{itemize}
-    \item \textbf{Mainframe} : Exécute des jobs réguliers avec des E/S intensives (e.g. calcul des fiches de paie). Supporte un grand volume de transferts et offre une gestion de timesharing pour plusieurs utilisateurs.
+    \item \textbf{Mainframe} : Exécute des jobs réguliers avec des E/S intensives (e.g. calcul des fiches de paie). 
+    Supporte un grand volume de transferts et offre une gestion de timesharing pour plusieurs utilisateurs.
     \item \textbf{Serveur} : Fournit des services aux utilisateurs distants (e.g. serveur d'impression), gère les ressources et la facturation.
     \item \textbf{Personal Computer} : Interaction humaine via interface graphique, exécution simultanée de plusieurs programmes, interactivité centrale (mesurée par la latence entre l'action et la réaction).
     \item \textbf{Système mobile} (e.g. tablette, smartphone) : Contraintes de ressources, économie d'énergie cruciale, processeur et mémoire limités, alimentation par batterie.
@@ -120,7 +134,54 @@ Un système d'exploitation inclut le code, les données, et la stack, similaires
 \begin{itemize}
     \item \textbf{Noyau monolithique} : Code dans un fichier unique, exécuté au plus haut niveau de privilège. Exemple : système avec configuration matérielle fixe.
     \item \textbf{Noyau modulaire} : Base toujours en mémoire, modules chargés/déchargés selon les besoins. Exemple : Linux.
-    \item \textbf{Microkernel} : Composantes exécutées à des niveaux de privilège réduits pour éviter les compromissions. Un serveur de ré-incarnation gère les erreurs fatales. Exemple : MINIX3.
+    \item \textbf{Microkernel} : Composantes exécutées à des niveaux de privilège réduits pour éviter les compromissions. 
+    Un serveur de ré-incarnation gère les erreurs fatales. Exemple : MINIX3.
     \item \textbf{Exokernel} : Gestion des ressources laissée aux programmes, le noyau assure uniquement la protection et l'isolation. Exemple : machines virtuelles.
 \end{itemize}
 
+
+
+
+
+
+
+
+
+\section{Introduction2}\label{sec:introduction2}
+
+\subsection{Vue d'ensemble}
+Le système d'exploitation (SE) est le logiciel de base qui gère les ressources matérielles et logicielles d'un ordinateur, offrant des services essentiels pour l'exécution des programmes. 
+Un SE permet aux utilisateurs et aux applications d'interagir avec le matériel sans nécessiter de connaître les détails techniques sous-jacents.
+
+\subsection{Rôles et fonctions du système d'exploitation}
+Les principales fonctions d'un SE incluent :
+\begin{itemize}
+    \item \textbf{Gestion des processus} : Supervise la création, l'exécution, la suspension et la terminaison des processus. 
+    Il gère également les threads et les mécanismes de synchronisation.
+    \item \textbf{Gestion de la mémoire} : Alloue et libère de la mémoire, gère la mémoire virtuelle, et s'assure que chaque processus a un espace mémoire isolé et protégé.
+    \item \textbf{Gestion des entrées/sorties (I/O)} : Coordonne et contrôle les opérations d'entrée/sortie des périphériques, utilisant des pilotes pour assurer la communication entre le matériel et les logiciels.
+    \item \textbf{Gestion des fichiers} : Gère les fichiers sur les différents systèmes de stockage, offrant des opérations de lecture, écriture, création, et suppression de fichiers.
+    \item \textbf{Sécurité et protection} : Protège les données et les ressources contre les accès non autorisés et les défaillances, assurant l'intégrité et la confidentialité des informations.
+\end{itemize}
+
+\subsection{Typologie et architecture des systèmes d'exploitation}
+Il existe différents types de SE, chacun adapté à des environnements et des usages spécifiques :
+\begin{itemize}
+    \item \textbf{Systèmes batch} : Traitent les lots de tâches sans interaction utilisateur pendant l'exécution.
+    \item \textbf{Systèmes temps partagé} : Permettent à plusieurs utilisateurs d'utiliser le système simultanément en partageant le temps processeur.
+    \item \textbf{Systèmes temps réel} : Offrent des réponses immédiates aux événements externes, essentiels pour les applications critiques.
+    \item \textbf{Systèmes embarqués} : Intégrés dans des appareils pour des tâches spécifiques, optimisés pour des contraintes de ressources limitées.
+\end{itemize}
+
+\subsection{Défis de la conception des systèmes d'exploitation}
+La conception d'un SE implique de nombreux défis, notamment :
+\begin{itemize}
+    \item \textbf{Complexité du matériel} : La gestion de divers composants matériels nécessite des abstractions et des interfaces standardisées.
+    \item \textbf{Multiplicité des utilisateurs et des tâches} : Assurer une utilisation équitable et efficace des ressources tout en isolant les utilisateurs et les tâches pour éviter les interférences.
+    \item \textbf{Sécurité et fiabilité} : Protéger le système contre les attaques et les défaillances tout en maintenant une performance stable.
+    \item \textbf{Évolutivité} : Adapter le SE aux nouveaux matériels et aux besoins croissants des utilisateurs sans compromettre les performances.
+\end{itemize}
+
+\subsection{Conclusion}
+Les systèmes d'exploitation sont des composants essentiels des systèmes informatiques, assurant la gestion et la coordination des ressources matérielles et logicielles. 
+Une compréhension approfondie de leurs fonctions, types et défis est cruciale pour les étudiants en sciences informatiques, permettant de développer des applications efficaces et sécurisées.

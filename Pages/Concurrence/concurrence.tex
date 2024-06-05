@@ -1,1 +1,47 @@
 \section{Concurrence}\label{sec:concurrence}
+
+\subsection{Problématique}
+La concurrence en informatique permet d'exécuter plusieurs processus ou threads simultanément, augmentant ainsi la réactivité et l'efficacité des systèmes. 
+Toutefois, cette parallélisation introduit de nouveaux défis, notamment les conditions de course, l'exclusion mutuelle et les deadlocks.
+
+\subsection{Mécanismes de communication}
+Les processus et threads peuvent communiquer via plusieurs mécanismes :
+\begin{itemize}
+    \item \textbf{Mémoire partagée} : Utilisation d'une mémoire commune pour échanger des données.
+    \item \textbf{Passage de messages} : Envoi de messages explicites entre processus ou threads.
+    \item \textbf{Fichiers} : Utilisation de fichiers communs pour la lecture et l'écriture de données.
+\end{itemize}
+
+\subsection{Conditions de course}
+Les conditions de course surviennent lorsque plusieurs threads accèdent simultanément à des données partagées sans synchronisation adéquate, entraînant des résultats imprévisibles. 
+Pour les éviter, des mécanismes de synchronisation tels que les verrous (mutex) et les sémaphores sont utilisés.
+
+\subsection{Sections critiques}
+Une section critique est une portion de code qui doit être exécutée par un seul thread à la fois pour éviter les conditions de course. Les solutions incluent :
+\begin{itemize}
+    \item \textbf{Attente active} : Les threads vérifient continuellement une condition jusqu'à ce qu'elle soit vraie, ce qui peut être inefficace.
+    \item \textbf{Blocage} : Les threads se mettent en attente jusqu'à ce qu'ils puissent entrer dans la section critique, ce qui est plus efficace que l'attente active.
+\end{itemize}
+
+\subsection{Problèmes classiques}
+Les problèmes classiques de la concurrence comprennent :
+\begin{itemize}
+    \item \textbf{Producteur-consommateur} : Synchronisation entre un producteur qui crée des données et un consommateur qui les utilise.
+    \item \textbf{Dîner des philosophes} : Un problème de synchronisation qui illustre les deadlocks et les solutions potentielles, comme l'utilisation de mutex.
+\end{itemize}
+
+\subsection{Deadlocks}
+Un deadlock survient lorsque plusieurs threads se bloquent mutuellement en attente de ressources. 
+Les conditions nécessaires pour un deadlock sont l'exclusion mutuelle, la possession et l'attente, l'absence de préemption, et la formation d'un cycle d'attente.
+
+\subsection{Stratégies pour éviter les deadlocks}
+Pour éviter les deadlocks, plusieurs stratégies peuvent être utilisées :
+\begin{itemize}
+    \item \textbf{Prévention} : Empêcher les conditions nécessaires au deadlock.
+    \item \textbf{Évitement} : Utiliser des algorithmes pour éviter d'entrer dans des états de deadlock, comme l'algorithme du banquier.
+    \item \textbf{Détection et récupération} : Détecter les deadlocks et prendre des mesures pour les résoudre.
+\end{itemize}
+
+\subsection{Conclusion}
+La gestion de la concurrence est essentielle pour tirer parti du parallélisme et améliorer les performances des systèmes informatiques. 
+Une compréhension approfondie des mécanismes de communication, des conditions de course, des sections critiques et des stratégies de prévention des deadlocks est cruciale pour développer des systèmes robustes

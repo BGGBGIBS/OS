@@ -1,1 +1,40 @@
 \section{Systèmes de fichiers}\label{sec:systemesdefichiers}
+
+\subsection{Problématique}
+La gestion de la mémoire secondaire est une tâche cruciale pour un système d'exploitation. 
+Les systèmes de fichiers sont conçus pour organiser l'espace de stockage, permettant ainsi les opérations de lecture et d'écriture de données. 
+Les objectifs principaux sont d'assurer la pérennité des données au-delà de l'exécution des processus et de protéger l'accès aux fichiers via des permissions.
+
+\subsection{Arborescence des fichiers}
+Le contenu d'un espace de stockage est structuré sous forme d'arborescence, où les nœuds peuvent être des fichiers ou des répertoires. 
+Chaque fichier est identifié par un chemin. 
+Les répertoires regroupent des fichiers et/ou d'autres répertoires, facilitant ainsi la navigation et l'organisation des données.
+
+\subsection{Supports physiques}
+Les supports physiques de stockage varient en termes de caractéristiques et d'usages :
+\begin{itemize}
+    \item \textbf{HDD} : Offre un grand espace de stockage à faible coût avec des temps d'accès variables.
+    \item \textbf{SSD} : Plus coûteux mais avec des temps d'accès beaucoup plus rapides et constants.
+    \item \textbf{Bandes magnétiques} : Utilisées principalement pour les sauvegardes en raison de leur grande fiabilité, mais adaptées uniquement pour des accès séquentiels.
+\end{itemize}
+
+\subsection{Modes d'allocation}
+Il existe plusieurs stratégies d'allocation pour les blocs de mémoire :
+\begin{itemize}
+    \item \textbf{Allocation contiguë} : Les fichiers sont stockés dans des blocs contigus, ce qui facilite la lecture séquentielle mais peut causer de la fragmentation externe et des difficultés d'extension.
+    \item \textbf{Allocation chaînée} : Utilise des pointeurs pour lier les blocs de données, réduisant ainsi la fragmentation externe mais augmentant le risque de perte de données en cas de corruption.
+    \item \textbf{Allocation par i-nodes} : Utilise une structure de données appelée i-node pour garder la trace des blocs de fichiers, supportant des accès séquentiels et directs tout en nécessitant un accès supplémentaire pour les i-nodes indirects.
+\end{itemize}
+
+\subsection{Performances et cohérence}
+Pour améliorer les performances, des techniques comme l'utilisation d'une cache de blocs (pour stocker les blocs fréquemment accédés) et la journalisation (pour assurer la cohérence des écritures) sont employées. 
+La journalisation consiste à enregistrer les opérations avant de les appliquer et à les supprimer une fois complétées, minimisant ainsi les risques de corruption en cas de panne.
+
+\subsection{Illustrations}
+\textbf{FAT16} : Dans un système de fichiers FAT16, les clusters sont des unités d'allocation de taille fixe. 
+La table d'allocation de fichiers (FAT) garde la trace des clusters alloués à chaque fichier. 
+Ce système permet de gérer la fragmentation externe et d'optimiser l'utilisation de l'espace de stockage disponible.
+
+\subsection{Conclusion}
+Les systèmes de fichiers jouent un rôle essentiel dans la gestion des données, offrant des solutions variées pour répondre aux besoins de pérennité, de protection et de performance. 
+La compréhension des différents modes d'allocation et des caractéristiques des supports physiques est cruciale pour optimiser leur utilisation dans un environnement de système d'exploitation.

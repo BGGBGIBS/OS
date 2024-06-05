@@ -1,11 +1,95 @@
 \section{Mémoire}\label{sec:memoire}
+Un programme c'est donc 3 composantes essentielles:
+\begin{enumerate}
+    \item Code machine: instructions représentant la logique de traitement
+    \item Espace de données (RAM): contient les données manipulées par le programme , incluant variables statiques (globales, tableaux) et dynamiques (via malloc)
+    \item Stack (espace de travail dédié ecrire et effacer): héberge les données de travail courantes telles que les variables locales et les inforamtions d'appel de fonctions imbriquées pour gérer les retours
+\end{enumerate}
+Ces éléments sont liés par des adresses représentant la logique du programme (branchements, appels et retours de fonctions, accès aux tableaux et manipulation de stack).
+
+Cablage selon une logique interne
+\begin{enumerate}
+    \item branchement
+    \item Appel retour de fonction
+    \item Référence à des tableaux
+    \item Manipulation de la stack
+\end{enumerate}
+
+Le programme est transformé en mots binaires représentant les instructions et les données via adresses absolues et relatives.
+
+Lors de son exécution, le programme est en mémoire principale et un système de projection des adresses permet de maintenir son éxécution correcte.
+
+Gestion de la mémoire :
+\begin{itemize}
+    \item Projection : transformer le adresses du programme en adresses physiques disponibles
+    \item Protection : restreindre l'accès mémoire pour protéger les données.
+    \item Gestion de la mémoire physique : représenter et suivre l'état de la mémoire en fonction des besoins des programmes
+\end{itemize}
 
 \subsection{Projection et protection}
 \subsubsection{Adressage absolu}
+Une adresse absolue désigne un emplacement spécifique dans la mémoire principale, identifiant une instruction ou une donnée précise.
+
 \subsubsection{Adressage relatif}
+Une adresse relative représente un décalage par rapport à un point de référence dans la mémoire principale.
 \subsubsection{Segmentation}
 \subsubsection{Pagination}
 
-\subsection{Gestion de la mémoire physiqsue}
+\subsection{Gestion de la mémoire physique}
 \subsubsection{Bitmpas}
 \subsubsection{Listes chaînées}
+
+
+
+\section{Mémoire2}\label{sec:memoire2}
+
+\subsection{Problématique}
+La gestion de la mémoire est essentielle pour assurer l'efficacité et la stabilité des systèmes informatiques. 
+Elle implique la répartition de la mémoire entre les différents processus et la protection de l'espace mémoire alloué. 
+Les défis incluent la gestion de la fragmentation, la protection de la mémoire et l'allocation dynamique.
+
+\subsection{Hiérarchie de la mémoire}
+La mémoire d'un système informatique est organisée en une hiérarchie :
+\begin{itemize}
+    \item \textbf{Registres} : Mémoire la plus rapide, utilisée pour stocker les données temporaires.
+    \item \textbf{Caches (L1, L2)} : Stockent les données fréquemment utilisées pour réduire les temps d'accès.
+    \item \textbf{Mémoire principale (RAM)} : Stocke les données et les programmes en cours d'exécution.
+    \item \textbf{Mémoire secondaire (HDD, SSD)} : Utilisée pour le stockage persistant des données.
+\end{itemize}
+
+\subsection{Allocation de la mémoire}
+L'allocation de la mémoire peut se faire de différentes manières :
+\begin{itemize}
+    \item \textbf{Allocation fixe} : Les blocs de mémoire ont une taille fixe, ce qui peut conduire à une fragmentation interne.
+    \item \textbf{Allocation dynamique} : La mémoire est allouée et libérée au besoin, ce qui nécessite une gestion plus complexe mais réduit la fragmentation.
+\end{itemize}
+
+\subsection{Mémoire virtuelle}
+La mémoire virtuelle permet à un système d'exécuter des programmes qui nécessitent plus de mémoire que celle disponible physiquement. 
+Elle utilise des mécanismes de pagination et de segmentation pour gérer l'allocation et la protection de la mémoire. 
+La mémoire virtuelle permet de charger et décharger les portions de mémoire selon les besoins du programme.
+
+\subsection{Protection de la mémoire}
+La protection de la mémoire est cruciale pour empêcher un programme d'accéder à la mémoire allouée à un autre programme ou au système d'exploitation lui-même. Les techniques incluent :
+\begin{itemize}
+    \item \textbf{Protection par segmentation} : Divise la mémoire en segments distincts avec des permissions d'accès spécifiques.
+    \item \textbf{Protection par pagination} : Utilise des pages de mémoire avec des permissions d'accès contrôlées par des tables de pages.
+\end{itemize}
+
+\subsection{Gestion de la fragmentation}
+La fragmentation de la mémoire peut être interne ou externe :
+\begin{itemize}
+    \item \textbf{Fragmentation interne} : Se produit lorsque des blocs de mémoire ont une taille fixe et que les allocations ne remplissent pas complètement ces blocs.
+    \item \textbf{Fragmentation externe} : Se produit lorsque des blocs de mémoire de tailles variables sont alloués et libérés, créant des espaces de mémoire inutilisables.
+\end{itemize}
+
+\subsection{Stratégies de gestion de la mémoire}
+Plusieurs stratégies peuvent être utilisées pour gérer efficacement la mémoire :
+\begin{itemize}
+    \item \textbf{Bitmaps} : Utilisent une série de bits pour suivre l'état de chaque unité d'allocation (libre ou allouée).
+    \item \textbf{Listes chaînées} : Maintiennent des listes chaînées des blocs de mémoire libres et alloués pour faciliter la gestion dynamique.
+\end{itemize}
+
+\subsection{Conclusion}
+La gestion de la mémoire est un aspect fondamental des systèmes d'exploitation, impactant directement la performance et la stabilité du système. 
+Une compréhension approfondie des techniques d'allocation, de la hiérarchie de la mémoire et des mécanismes de protection est essentielle pour optimiser l'utilisation de la mémoire dans un environnement informatique.
