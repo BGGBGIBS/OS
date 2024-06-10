@@ -1,43 +1,5 @@
 \section{Processus}\label{sec:processus}
 
-\subsection{Constitution}
-\subsubsection{Table des processus}
-\subsubsection{Cycle de vie}
-
-\subsection{Ordonnancement}
-\subsubsection{Systèmes batch}
-
-Les systèmes batch exécutent des lots de travaux sans interaction avec avec l'utilisateur pendant l'exécution.
-
-Algorithmes
-\begin{itemize}
-    \item First-Come, First-Served (FCFS): Les processus sont exécutés dans l'ordre de leur arrivée.
-    \item Shortest Job Next (SJN): Les processus avec le plus court temps d'exécution sont prioritaires
-\end{itemize}
-\subsubsection{Systèmes interactifs}
-
-Les systèmes interactifs permettent une interaction continue avec l'utilisateur, nécessitant des temps de réponse courts.
-
-Algorithmes:
-\begin{itemize}
-    \item Round Robin: chaque processus reçoit un temps de CPU fixe, appelé quantum, et est ensuite placé à la fin de la file d'attente.
-    \item Priority scheduling: les processus sont exécutés en fonction de leur priorité.
-\end{itemize}
-\subsubsection{Systèmes en temps réel}
-
-Les systèmes en temps réels doivent répondre à des contraintes temporelles strictes, souvent utilisés dans des applications critiques.
-
-Algorithmes:
-\begin{itemize}
-    \item Rate Monotonic Scheduling (RMS): les processus avec les périodes les plus courtes ont la plus haute priorité
-    \item Earliest Deadline First (EDF) : Les processus sont exécutés en fonction de leur échéance la plus proche
-\end{itemize}
-
-\subsection{Multi-threading}
-
-
-\section{Processus2}\label{sec:processus2}
-
 \subsection{Problématique}
 Un processus est une instance d'un programme en cours d'exécution, comprenant son code, ses données et ses ressources système allouées. 
 La gestion des processus est essentielle pour assurer l'exécution efficace et sécurisée des programmes sur un système informatique.
@@ -66,6 +28,34 @@ Les principales politiques d'ordonnancement incluent :
     \item \textbf{First-Come, First-Served (FCFS)} : Les processus sont exécutés dans l'ordre de leur arrivée.
     \item \textbf{Round-Robin} : Chaque processus reçoit un quantum de temps fixe pour s'exécuter tour à tour.
     \item \textbf{Shortest Job Next (SJN)} : Le processus avec le temps d'exécution le plus court est exécuté en premier.
+\end{itemize}
+
+\subsubsection{Systèmes batch}
+
+Les systèmes batch exécutent des lots de travaux sans interaction avec avec l'utilisateur pendant l'exécution.
+
+Algorithmes
+\begin{itemize}
+    \item First-Come, First-Served (FCFS): Les processus sont exécutés dans l'ordre de leur arrivée.
+    \item Shortest Job Next (SJN): Les processus avec le plus court temps d'exécution sont prioritaires
+\end{itemize}
+\subsubsection{Systèmes interactifs}
+
+Les systèmes interactifs permettent une interaction continue avec l'utilisateur, nécessitant des temps de réponse courts.
+
+Algorithmes:
+\begin{itemize}
+    \item Round Robin: chaque processus reçoit un temps de CPU fixe, appelé quantum, et est ensuite placé à la fin de la file d'attente.
+    \item Priority scheduling: les processus sont exécutés en fonction de leur priorité.
+\end{itemize}
+\subsubsection{Systèmes en temps réel}
+
+Les systèmes en temps réels doivent répondre à des contraintes temporelles strictes, souvent utilisés dans des applications critiques.
+
+Algorithmes:
+\begin{itemize}
+    \item Rate Monotonic Scheduling (RMS): les processus avec les périodes les plus courtes ont la plus haute priorité
+    \item Earliest Deadline First (EDF) : Les processus sont exécutés en fonction de leur échéance la plus proche
 \end{itemize}
 
 \subsection{Multi-threading}

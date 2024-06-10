@@ -5,6 +5,10 @@ Un système d'exploitation est constitué d'un noyau auquel vient s'ajouter le c
 Le développeur d'un système d'exploitation doit abstraire le fonctionnement des périphériques afin d'offre un interface de programmation au programmeur.
 La gestion des ressources et les communications avec les différents périphériques est gérée par le système d'exploitation.
 
+\subsection{Vue d'ensemble}
+Le système d'exploitation (SE) est le logiciel de base qui gère les ressources matérielles et logicielles d'un ordinateur, offrant des services essentiels pour l'exécution des programmes. 
+Un SE permet aux utilisateurs et aux applications d'interagir avec le matériel sans nécessiter de connaître les détails techniques sous-jacents.
+
 \subsection{Abstractions de programmation}
 
 Un système d’exploitation peut être perçu comme exposant une interface de programmation système aux programmes qui tournent sur une machine.
@@ -126,7 +130,6 @@ Les types de systèmes influencent la conception des systèmes d'exploitation :
     \item \textbf{Système temps-réel} : Respect des échéances crucial, priorisation des tâches, gestion précise du temps pour aligner les traitements avec l'environnement.
 \end{itemize}
 
-
 \subsection{Architecture}
 
 Un système d'exploitation inclut le code, les données, et la stack, similaires à un programme classique. Il utilise des instructions système nécessitant des niveaux de privilège spécifiques, et le noyau gère les ressources.
@@ -140,19 +143,6 @@ Un système d'exploitation inclut le code, les données, et la stack, similaires
 \end{itemize}
 
 
-
-
-
-
-
-
-
-\section{Introduction2}\label{sec:introduction2}
-
-\subsection{Vue d'ensemble}
-Le système d'exploitation (SE) est le logiciel de base qui gère les ressources matérielles et logicielles d'un ordinateur, offrant des services essentiels pour l'exécution des programmes. 
-Un SE permet aux utilisateurs et aux applications d'interagir avec le matériel sans nécessiter de connaître les détails techniques sous-jacents.
-
 \subsection{Rôles et fonctions du système d'exploitation}
 Les principales fonctions d'un SE incluent :
 \begin{itemize}
@@ -164,14 +154,6 @@ Les principales fonctions d'un SE incluent :
     \item \textbf{Sécurité et protection} : Protège les données et les ressources contre les accès non autorisés et les défaillances, assurant l'intégrité et la confidentialité des informations.
 \end{itemize}
 
-\subsection{Typologie et architecture des systèmes d'exploitation}
-Il existe différents types de SE, chacun adapté à des environnements et des usages spécifiques :
-\begin{itemize}
-    \item \textbf{Systèmes batch} : Traitent les lots de tâches sans interaction utilisateur pendant l'exécution.
-    \item \textbf{Systèmes temps partagé} : Permettent à plusieurs utilisateurs d'utiliser le système simultanément en partageant le temps processeur.
-    \item \textbf{Systèmes temps réel} : Offrent des réponses immédiates aux événements externes, essentiels pour les applications critiques.
-    \item \textbf{Systèmes embarqués} : Intégrés dans des appareils pour des tâches spécifiques, optimisés pour des contraintes de ressources limitées.
-\end{itemize}
 
 \subsection{Défis de la conception des systèmes d'exploitation}
 La conception d'un SE implique de nombreux défis, notamment :
